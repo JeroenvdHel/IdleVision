@@ -1,0 +1,85 @@
+#:kivy 2.0.0
+#:import hex kivy.utils.get_color_from_hex
+
+# Customized Widgets:
+<CLabel@Label>:
+    markup: True
+
+
+<MainScreen>:
+    name: 'main_screen'
+    BoxLayout:
+        size_hint_y: 1
+        size_hint_x: 1
+        orientation: 'vertical'
+
+        CLabel:
+            id: lbl_am_counter
+            size_hint: 1, 0.06
+            size: self.texture_size
+            text: "You have [b][size=30][color=18dc2c]0[/color][/size][/b] antimatter"
+
+            # For testing purposes
+            canvas.before:
+                Color:
+                    rgba: hex('#4d4d4d')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        CLabel:
+            id: lbl_am_sec_counter
+            size_hint: 1, 0.04
+            text: "You are getting [b]0[/b] antimatter per second"
+
+
+        BoxLayout:
+            size_hint_y: 0.15
+#            canvas.before:
+#                Color:
+#                    rgba: 1, 1, 1, 1
+#                Rectangle:
+#                    pos: self.pos
+#                    size: self.size
+
+        GridLayout:
+            rows: 1
+            size_hint_y: 0.75
+            GridLayout:
+                cols: 1
+                size_hint_y: 1
+                Label:
+                    id: lbl_am_1_dim_title
+                    text: "1st Dimension"
+                Label:
+                    id: lbl_am_1_dim_multiplier
+                    text: "[integer]x"
+            GridLayout:
+                cols: 1
+                size_hint_y: 1
+                Label:
+                    id: lbl_am_1_dim_amount
+                    text: "[amount]"
+                Label:
+                    id:lbl_am_1_dim_gain
+                    text: "[gain]%"
+            GridLayout:
+                cols: 1
+#                size_hint_y: 1
+                Button:
+                    id: btn_am_1_dim_buy
+                    text: "Cost: [amount]"
+                    on_press: root.speed_up()
+
+
+
+
+
+
+<RootWidget>:
+    MainScreen:
+        id: main_screen
+        name: 'main_screen'
+    SecondScreen:
+        id: second_screen
+        name: 'second_screen'
